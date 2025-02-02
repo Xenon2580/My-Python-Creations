@@ -56,8 +56,45 @@ elif x == "5":
         print("Please enter either 1 or 0")
         exit()
 elif x == "6":
-    print("Ok, You've chosen FINDING SIGNIFICANT FIGURES")
-    print("Sorry, this feature has not been developed yet...")      #Still in development
+    print("Ok, You've chosen FINDING SIGNIFICANT FIGURES")      #Finding Sig. Fig.
+    no = input("Enter the Number: ")
+    c = 0
+
+    for i in no:
+        if i != "0" and i != ".":               #Rule 1
+            c += 1
+
+    for i in range(1, len(no) - 1):               #Rule 2
+        if no[i] == "0" and no[i - 1].isdigit() and no[i + 1].isdigit():
+            c += 1
+
+    lz = 0
+    for i in no:
+        if i == "0":               #Rule 3
+            lz += 1
+        elif i.isdigit():
+            break
+
+    td = 0
+    if "." in no:               #Rule 4
+        for i in reversed(no):
+            if i == "0":
+                td += 1
+            elif i == ".":
+                break
+            else:
+                break
+        c += td
+
+    tw = 0
+    if "." not in no:               #Rule 5
+        for i in reversed(no):
+            if i == "0":
+                tw += 1
+            else:
+                break
+
+    print(f"The total no. of Significant digits are: {c}")
     exit()
 else:
     print("!!ERROR 101!!")
